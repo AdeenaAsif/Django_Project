@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock title %}
+{% block body %}
+{% comment %} <div class="container-fluid mb-3 py-4">
+
+<img src="https://source.unsplash.com/1200x400/?Contact,phone" class="d-block w-100 my-0" alt="...">
+</div>
+<div class="container ">
+<h2 class="text-center">Contact Us</h2>
+<form method='post' action='/Contact'>
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address">
+      {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+    {% comment %} </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number">
+    </div>
+    <div class="mb-3">
+        <label for="desc" class="form-label">About</label>
+        <textarea class="form-control" id="desc" rows="3" name="desc" placeholder="Write something here"></textarea>
+    </div>
+    
+    
+    <div class="mb-3">
+      {% comment %} <label for="exampleInputPassword1" class="form-label">Password</label> {% endcomment %}
+      {% comment %} <input type="password" class="form-control" id="exampleInputPassword1"> {% endcomment %}
+    {% comment %} </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  {% comment %} </form> {% endcomment %}
+
+
+ {% comment "My body block" %}{% endcomment %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
+
+
+<div>
+  <div class="contact-form-wrapper d-flex justify-content-center">
+    <form method="post" action='/Contact' class="contact-form">
+         {% csrf_token %}
+        
+      <h5 class="title" >Contact us</h5>
+      <p class="description">Feel free to contact us if you need any assistance, any help or another question.
+      </p>
+      <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" id="name" name="name" placeholder="Name" required>
+      </div>
+      <div>
+        <input type="email" class="form-control rounded border-white mb-3 form-input" id="email" name="email" placeholder="Email" required>
+      </div>
+      <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" id="phone" name="phone" placeholder="Phone #" required>
+      </div>
+      <div>
+        <textarea id="message" class="form-control rounded border-white mb-3 form-text-area" id="desc" name="desc" rows="5" cols="30" placeholder="Message" required></textarea>
+      </div>
+      <div class="submit-button-wrapper">
+        <input type="submit" value="Send">
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+    {% endblock body %}
+
+    

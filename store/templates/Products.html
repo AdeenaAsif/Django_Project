@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load cart%}
+{% block title %}{{product.product_name}}{% endblock title %}
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+    <div class="col-md-4">
+<div class="row">
+    <img src="/media/{{ product.image }}" width="350" height="350" alt="">
+
+</div>
+
+</div>
+<div class="col-md-8">
+    <h5>{{product.product_name}}</h5>
+    <p><b>Rs.{{product.price}}</b></p>
+
+    <p>{{product.desc}}</p>
+    <div class="row">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <form action="/#{{product.id}}" method='POST'>
+            <div class="input-group " style='width: 110px; ' >
+                {% comment %} <button class="btn btn-secondary minus-btn" type="button" style='background-color: #f23292;'>-</button> {% endcomment %}
+                {% comment %} <input type="text" class="form-control quantity align-items-center"  value="1"> {% endcomment %}
+                
+                  {% csrf_token %}
+                  <input hidden type="text" name="product" value='{{product.id}}'>
+                <button class="btn btn-secondary minus-btn" type="button" style='background-color: #f23292;'>-</button>
+
+                <input type="text" class="form-control" id="quantityInput" name="items" value="1">
+
+                <button class="btn btn-secondary plus-btn" type="button"style='background-color: #f23292;'>+</button>
+                {% comment %} <button class="btn btn-secondary plus-btn " type="button"  style='background-color: #f23292';>+</button> {% endcomment %}
+              
+              </div>
+            
+        </div>
+        <div class="col-md-8">
+     
+        {% comment %} <button class="btn btn-primary mx-3" style=' --bs-btn-hover-border-color: #f23292; --bs-btn-border-color:#f23292; width:125px;'>Buy Now</button> {% endcomment %}
+        <input type="submit" class="btn btn-sm btn-outline-secondary " style=' width:125px; padding:7px; background-color: #f23292;color:white; margin-left:-100px;'value="Add to Cart">
+      </form>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-Kt3w5URvXTG8D8dzsXq3douJc2gWuUvI6Yi9fbDjOtM=" crossorigin="anonymous"></script>
+
+ {% block js %}
+<script>
+  
+  $(document).ready(function () {
+    $(document).on('click', '.minus-btn', function () {
+      var inputField = $('#quantityInput'); 
+        var inputValue = parseInt(inputField.val());
+        if (inputValue > 1) {
+            inputField.val(inputValue - 1);
+        }
+    });
+
+    $(document).on('click', '.plus-btn', function () {
+      var inputField = $('#quantityInput'); 
+        var inputValue = parseInt(inputField.val());
+        inputField.val(inputValue + 1);
+    });
+});
+
+</script>
+
+
+{%endblock%}
